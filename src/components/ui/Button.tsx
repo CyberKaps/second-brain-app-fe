@@ -5,7 +5,9 @@ export interface ButtonProps {
     text: string;
     startIcon?: any;
     endIcon?: any;
-    onClick: () => void;
+    onClick?: () => void;
+    fullwidth?: boolean;
+    loader?: boolean;
  
 }
 
@@ -21,13 +23,16 @@ const sizeStyles = {
     "lg": "py-4 px-6"
 }
 
-const defaultStyles = "rounded-md flex"
+const defaultStyles = "rounded-md flex items-center ml-2 mt- mr-"
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({varient, text, startIcon, endIcon, size, onClick, fullwidth, loader}: ButtonProps) => {
 
-    return <button className={`${varientStyles[props.varient]} ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null }{props.text} {props.endIcon}</button>
+    return <button onClick={onClick} className={`${varientStyles[varient]} ${defaultStyles} ${fullwidth ? " w-full flex justify-center items-center" : ""} ${loader ? " opacity-45" : ""} ${sizeStyles[size]}`} disabled={loader
+
+    }>{startIcon ? <div className="">{startIcon}
+    </div> : null }{text} {endIcon}</button>
 
 }
 
 
-<Button varient="primary" size="md" onClick={() => {}} text={"asd"} startIcon={"-"} />
+{/* <Button varient="primary" size="md" text={"asd"} startIcon={"-"} /> */}
